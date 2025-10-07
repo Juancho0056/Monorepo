@@ -31,24 +31,48 @@ function representarTabla(pendientes) {
   pendientes.forEach((pendiente) => {
     const fila = document.createElement("tr");
     fila.className = "hover:bg-slate-100";
-    fila.innerHTML = `
-      <td class="px-4 py-3 text-sm">${pendiente.id}</td>
-      <td class="px-4 py-3 text-sm">${pendiente.title || "Sin título"}</td>
-      <td class="px-4 py-3 text-sm">
-        <span class="px-2 py-1 rounded-full text-xs font-semibold ${pendiente.isCompleted ? "bg-emerald-100 text-emerald-600" : "bg-amber-100 text-amber-700"}">
-          ${pendiente.isCompleted ? "Terminado" : "Pendiente"}
-        </span>
-      </td>
-      <td class="px-4 py-3 text-sm">${pendiente.priority}</td>
-      <td class="px-4 py-3 text-sm">
-        <div class="flex gap-2">
-          <button class="px-3 py-1 border border-primario text-primario rounded-lg text-xs" data-accion="ver" data-identificador="${pendiente.id}">Ver</button>
-          <button class="px-3 py-1 border border-gray-400 text-gray-600 rounded-lg text-xs" data-accion="editar" data-identificador="${pendiente.id}">Editar</button>
-        </div>
-      </td>
-    `;
+    fila.appendChild(crearCelda(pendiente.id, "Código"));
+    fila.appendChild(crearCelda(pendiente.title || "Sin título", "Título"));
+
+    const celdaEstado = crearCelda("", "Estado");
+    const insignia = document.createElement("span");
+    insignia.className = `px-2 py-1 rounded-full text-xs font-semibold ${pendiente.isCompleted ? "bg-emerald-100 text-emerald-600" : "bg-amber-100 text-amber-700"}`;
+    insignia.textContent = pendiente.isCompleted ? "Terminado" : "Pendiente";
+    celdaEstado.textContent = "";
+    celdaEstado.appendChild(insignia);
+    fila.appendChild(celdaEstado);
+
+    fila.appendChild(crearCelda(pendiente.priority, "Prioridad"));
+
+    const celdaAcciones = crearCelda("", "Acciones");
+    const contenedorAcciones = document.createElement("div");
+    contenedorAcciones.className = "flex gap-2 flex-wrap grupo-acciones";
+
+    const botonVer = document.createElement("button");
+    botonVer.className = "px-3 py-1 border border-primario text-primario rounded-lg text-xs";
+    botonVer.dataset.accion = "ver";
+    botonVer.dataset.identificador = pendiente.id;
+    botonVer.textContent = "Ver";
+
+    const botonEditar = document.createElement("button");
+    botonEditar.className = "px-3 py-1 border border-gray-400 text-gray-600 rounded-lg text-xs";
+    botonEditar.dataset.accion = "editar";
+    botonEditar.dataset.identificador = pendiente.id;
+    botonEditar.textContent = "Editar";
+
+    contenedorAcciones.append(botonVer, botonEditar);
+    celdaAcciones.appendChild(contenedorAcciones);
+    fila.appendChild(celdaAcciones);
     cuerpoTabla.appendChild(fila);
   });
+}
+
+function crearCelda(texto, encabezado) {
+  const celda = document.createElement("td");
+  celda.className = "px-4 py-3 text-sm";
+  celda.dataset.celda = encabezado;
+  celda.textContent = texto;
+  return celda;
 }
 
 function limpiarFormulario() {
