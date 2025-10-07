@@ -30,20 +30,39 @@ function dibujarTabla(pendientes) {
   cuerpoTabla.innerHTML = "";
   pendientes.forEach((pendiente) => {
     const fila = document.createElement("tr");
-    fila.innerHTML = `
-      <td>${pendiente.id}</td>
-      <td>${pendiente.title || "Sin título"}</td>
-      <td>${pendiente.isCompleted ? "Terminado" : "Pendiente"}</td>
-      <td>${pendiente.priority}</td>
-      <td>
-        <div class="fila-accion">
-          <button data-accion="ver" data-identificador="${pendiente.id}">Ver</button>
-          <button data-accion="editar" data-identificador="${pendiente.id}">Editar</button>
-        </div>
-      </td>
-    `;
+    fila.appendChild(crearCelda(pendiente.id, "Código"));
+    fila.appendChild(crearCelda(pendiente.title || "Sin título", "Título"));
+    fila.appendChild(
+      crearCelda(pendiente.isCompleted ? "Terminado" : "Pendiente", "Estado")
+    );
+    fila.appendChild(crearCelda(pendiente.priority, "Prioridad"));
+
+    const celdaAcciones = crearCelda("", "Acciones");
+    const contenedorAcciones = document.createElement("div");
+    contenedorAcciones.className = "fila-accion";
+
+    const botonVer = document.createElement("button");
+    botonVer.dataset.accion = "ver";
+    botonVer.dataset.identificador = pendiente.id;
+    botonVer.textContent = "Ver";
+
+    const botonEditar = document.createElement("button");
+    botonEditar.dataset.accion = "editar";
+    botonEditar.dataset.identificador = pendiente.id;
+    botonEditar.textContent = "Editar";
+
+    contenedorAcciones.append(botonVer, botonEditar);
+    celdaAcciones.appendChild(contenedorAcciones);
+    fila.appendChild(celdaAcciones);
     cuerpoTabla.appendChild(fila);
   });
+}
+
+function crearCelda(texto, encabezado) {
+  const celda = document.createElement("td");
+  celda.dataset.encabezado = encabezado;
+  celda.textContent = texto;
+  return celda;
 }
 
 function limpiarFormulario() {

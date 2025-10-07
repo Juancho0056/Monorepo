@@ -30,24 +30,46 @@ function construirTabla(pendientes) {
   cuerpoTabla.innerHTML = "";
   pendientes.forEach((pendiente) => {
     const fila = document.createElement("tr");
-    fila.innerHTML = `
-      <td>${pendiente.id}</td>
-      <td>${pendiente.title || "Sin título"}</td>
-      <td>
-        <span class="badge ${pendiente.isCompleted ? "bg-success" : "bg-warning text-dark"}">
-          ${pendiente.isCompleted ? "Terminado" : "Pendiente"}
-        </span>
-      </td>
-      <td>${pendiente.priority}</td>
-      <td>
-        <div class="d-flex gap-2">
-          <button class="btn btn-sm btn-outline-primary" data-accion="ver" data-identificador="${pendiente.id}">Ver</button>
-          <button class="btn btn-sm btn-outline-secondary" data-accion="editar" data-identificador="${pendiente.id}">Editar</button>
-        </div>
-      </td>
-    `;
+    fila.appendChild(crearCelda(pendiente.id, "Código"));
+    fila.appendChild(crearCelda(pendiente.title || "Sin título", "Título"));
+
+    const celdaEstado = crearCelda("", "Estado");
+    const insignia = document.createElement("span");
+    insignia.className = `badge ${pendiente.isCompleted ? "bg-success" : "bg-warning text-dark"}`;
+    insignia.textContent = pendiente.isCompleted ? "Terminado" : "Pendiente";
+    celdaEstado.appendChild(insignia);
+    fila.appendChild(celdaEstado);
+
+    fila.appendChild(crearCelda(pendiente.priority, "Prioridad"));
+
+    const celdaAcciones = crearCelda("", "Acciones");
+    const grupoAcciones = document.createElement("div");
+    grupoAcciones.className = "d-flex gap-2 flex-wrap grupo-acciones";
+
+    const botonVer = document.createElement("button");
+    botonVer.className = "btn btn-sm btn-outline-primary";
+    botonVer.dataset.accion = "ver";
+    botonVer.dataset.identificador = pendiente.id;
+    botonVer.textContent = "Ver";
+
+    const botonEditar = document.createElement("button");
+    botonEditar.className = "btn btn-sm btn-outline-secondary";
+    botonEditar.dataset.accion = "editar";
+    botonEditar.dataset.identificador = pendiente.id;
+    botonEditar.textContent = "Editar";
+
+    grupoAcciones.append(botonVer, botonEditar);
+    celdaAcciones.appendChild(grupoAcciones);
+    fila.appendChild(celdaAcciones);
     cuerpoTabla.appendChild(fila);
   });
+}
+
+function crearCelda(texto, encabezado) {
+  const celda = document.createElement("td");
+  celda.dataset.campo = encabezado;
+  celda.textContent = texto;
+  return celda;
 }
 
 function limpiarFormulario() {

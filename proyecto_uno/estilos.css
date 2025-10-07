@@ -102,18 +102,18 @@ body {
   overflow-x: auto;
 }
 
-table {
+.tabla-responsiva {
   width: 100%;
   border-collapse: collapse;
 }
 
-thead {
+.tabla-responsiva thead {
   background: var(--color-acento);
   color: #ffffff;
 }
 
-td,
-th {
+.tabla-responsiva td,
+.tabla-responsiva th {
   padding: 0.75rem;
   border-bottom: 1px solid var(--color-borde);
   text-align: left;
@@ -160,5 +160,73 @@ th {
 
   .panel-formulario {
     grid-column: span 2;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .panel {
+    padding: 1.25rem;
+  }
+
+  .panel h2 {
+    font-size: 1.25rem;
+  }
+
+  .tabla-responsiva,
+  .tabla-responsiva thead,
+  .tabla-responsiva tbody,
+  .tabla-responsiva th,
+  .tabla-responsiva td,
+  .tabla-responsiva tr {
+    display: block;
+    width: 100%;
+  }
+
+  .tabla-responsiva thead {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  .tabla-responsiva tbody tr {
+    background: var(--color-panel);
+    border: 1px solid var(--color-borde);
+    border-radius: 0.75rem;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+
+  .tabla-responsiva td {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.4rem 0;
+  }
+
+  .tabla-responsiva td::before {
+    content: attr(data-encabezado);
+    color: var(--color-acento);
+    font-weight: 600;
+  }
+
+  .fila-accion {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .fila-accion button {
+    flex: 1 1 140px;
   }
 }
