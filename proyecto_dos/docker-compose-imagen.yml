@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  sitio:
-    image: usuario/proyecto_dos:ultima
-    ports:
-      - "5174:80"
+      sitio:
+            image: usuario/proyecto_dos:ultima
+            ports:
+                  - "5174:80"
