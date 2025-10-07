@@ -3,4 +3,4 @@ services:
   sitio:
     image: usuario/proyecto_uno:ultima
     ports:
-      - "8081:80"
+      - "5174:80"

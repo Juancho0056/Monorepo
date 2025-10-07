@@ -3,4 +3,4 @@ services:
   sitio:
     image: usuario/proyecto_dos:ultima
     ports:
-      - "8082:80"
+      - "5174:80"
