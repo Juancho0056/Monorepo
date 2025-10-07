@@ -1,0 +1,16 @@
+body {
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+.sombra {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+#detalle p {
+  margin-bottom: 0.5rem;
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}

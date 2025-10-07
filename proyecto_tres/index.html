@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor con Tailwind</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primario: '#2563eb',
+            fondo: '#f1f5f9',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-fondo min-h-screen">
+  <header class="bg-primario text-white py-6 shadow-md">
+    <div class="max-w-6xl mx-auto px-4">
+      <h1 class="text-3xl font-bold">Gestor de pendientes con Tailwind</h1>
+      <p class="mt-2 text-sm text-blue-100">Ejercicio formativo que integra Tailwind CSS y consumo completo de la API.</p>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 py-8 space-y-6">
+    <section class="bg-white rounded-xl shadow-lg p-6">
+      <h2 class="text-2xl font-semibold text-primario mb-4">Formulario central</h2>
+      <form id="formulario" class="grid gap-4 md:grid-cols-2">
+        <input type="hidden" id="campo-id">
+        <div class="flex flex-col">
+          <label for="campo-titulo" class="font-medium text-gray-700">Título</label>
+          <input id="campo-titulo" type="text" required class="mt-1 rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primario">
+        </div>
+        <div class="flex flex-col">
+          <label for="campo-prioridad" class="font-medium text-gray-700">Prioridad</label>
+          <input id="campo-prioridad" type="number" min="1" max="5" value="1" class="mt-1 rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primario">
+        </div>
+        <div class="flex flex-col">
+          <label for="campo-estado" class="font-medium text-gray-700">Estado</label>
+          <select id="campo-estado" class="mt-1 rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primario">
+            <option value="false">Pendiente</option>
+            <option value="true">Terminado</option>
+          </select>
+        </div>
+        <div class="flex flex-col">
+          <label for="campo-fecha" class="font-medium text-gray-700">Fecha límite</label>
+          <input id="campo-fecha" type="datetime-local" class="mt-1 rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primario">
+        </div>
+        <div class="md:col-span-2 flex flex-col">
+          <label for="campo-descripcion" class="font-medium text-gray-700">Descripción</label>
+          <textarea id="campo-descripcion" rows="3" class="mt-1 rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primario"></textarea>
+        </div>
+        <div class="md:col-span-2 flex flex-wrap gap-3">
+          <button type="submit" class="px-4 py-2 bg-primario text-white rounded-lg shadow hover:bg-blue-700 transition">Guardar</button>
+          <button type="button" id="boton-limpiar" class="px-4 py-2 border border-primario text-primario rounded-lg hover:bg-blue-50 transition">Limpiar</button>
+          <button type="button" id="boton-eliminar" class="px-4 py-2 border border-red-500 text-red-600 rounded-lg hover:bg-red-50 transition">Eliminar seleccionado</button>
+        </div>
+      </form>
+      <div class="mt-6">
+        <label for="campo-busqueda" class="font-medium text-gray-700">Consulta rápida por código</label>
+        <div class="mt-2 flex flex-col gap-3 sm:flex-row">
+          <input id="campo-busqueda" type="number" min="1" class="flex-1 rounded-lg border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primario">
+          <button id="boton-buscar" class="px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-600 transition" type="button">Buscar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid gap-6 lg:grid-cols-5">
+      <article class="bg-white rounded-xl shadow-lg p-6 lg:col-span-2">
+        <h2 class="text-xl font-semibold text-primario mb-4">Detalle seleccionado</h2>
+        <div id="detalle" class="text-gray-700 espacio-detalle">
+          <p class="text-sm text-gray-500">Aún no se ha seleccionado ningún pendiente.</p>
+        </div>
+      </article>
+
+      <article class="bg-white rounded-xl shadow-lg p-6 lg:col-span-3">
+        <h2 class="text-xl font-semibold text-primario mb-4">Listado total</h2>
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-primario text-white">
+              <tr>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Código</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Título</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Estado</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Prioridad</th>
+                <th class="px-4 py-3 text-left text-sm font-semibold">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpo-tabla" class="divide-y divide-gray-200"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="bg-gray-900 text-gray-300 text-center py-4 mt-8">
+    <p>Proyecto práctico con Tailwind CSS y consumo de servicios web.</p>
+  </footer>
+
+  <script src="aplicacion.js"></script>
+</body>
+</html>
