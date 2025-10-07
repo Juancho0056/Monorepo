@@ -21,8 +21,8 @@ Estándares obligatorios para cada proyecto:
    o Proyecto 3: HTML + Tailwind + JavaScript
 
 Reporte final
-Posteriormente, cada estudiante deberá entregar un reporte escrito que refuerce sus conocimientos teórico-prácticos.
-El documento debe incluir explicaciones, reflexiones y pantallazos obligatorios basados en los proyectos desarrollados por el propio estudiante (no se aceptan imágenes tomadas de Internet) en los apartados que así lo indiquen.
+
+Documentar
 
 1. Consumo de APIs
    • Diferencia entre endpoint y recurso. (con pantallazos)
@@ -40,32 +40,3 @@ El documento debe incluir explicaciones, reflexiones y pantallazos obligatorios 
    • Uso de la fetch API para consumir servicios REST. (con pantallazos)
    • Manejo de promesas y la sintaxis async/await. (con pantallazos)
    • Validaciones en el cliente para garantizar la calidad de los datos. (con pantallazos)
-
-4. Contenedores y despliegue
-   • ¿Qué es la dockerización y por qué es útil?
-   • Diferencia entre imagen y contenedor. (con pantallazos)
-   • Explicación básica de un Dockerfile. (con pantallazos)
-   • Función de DockerHub como repositorio público de imágenes.
-   • Uso de docker-compose para orquestar aplicaciones (modos build y run).
-   • Beneficios de publicar una aplicación en DockerHub.
-
-Condiciones de entrega
-Para la evaluación se deberán cumplir las siguientes condiciones:
-
-1. Video de ejecución:
-   o Se debe entregar un video en el que se evidencie la ejecución de cada proyecto desde Docker, mostrando el funcionamiento completo de las funcionalidades requeridas.
-2. Reporte escrito:
-   o El reporte debe ser subido al aula virtual y también al Google Drive asignado al inicio del semestre, dentro de la carpeta llamada “Parcial 2”.
-3. Repositorios de GitHub:
-   o Se debe compartir el link o links de los repositorios de los proyectos, ya sea en repositorios separados o en un único repositorio consolidado.
-4. Repositorios de DockerHub:
-   o Se deben compartir los links de los repositorios de DockerHub donde estén publicadas las imágenes de los proyectos.
-
-Penalizaciones por incumplimiento
-El incumplimiento de las condiciones establecidas tendrá un impacto directo en la calificación final, de acuerdo con los siguientes criterios:
-• La no entrega de un proyecto restará 2 puntos sobre la nota final.
-• La no entrega del video limitará la calificación máxima a 0.5 puntos.
-• La no entrega del reporte limitará la calificación máxima a 0.5 puntos.
-• Durante la clase se realizará una grabación continua en la que se harán preguntas de validación. Estas preguntas serán excluyentes y estarán orientadas a comprobar que el estudiante efectivamente desarrolló los proyectos.
-o En caso de evidenciar que el estudiante no realizó el desarrollo de los proyectos, la calificación máxima será de 1.0 punto.
-• Si se evidencia plagio en el reporte, la calificación máxima será de 1.0 punto en las partes involucradas.
