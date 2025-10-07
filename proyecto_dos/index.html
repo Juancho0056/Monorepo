@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor con Bootstrap</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+    <div class="container-fluid">
+      <span class="navbar-brand">Gestor de pendientes con Bootstrap</span>
+    </div>
+  </nav>
+
+  <main class="container pb-4">
+    <div class="row g-4">
+      <section class="col-12">
+        <div class="card sombra">
+          <div class="card-header bg-primary text-white">Formulario principal</div>
+          <div class="card-body">
+            <form id="formulario" class="row g-3">
+              <input type="hidden" id="campo-id">
+              <div class="col-md-6">
+                <label for="campo-titulo" class="form-label">Título</label>
+                <input id="campo-titulo" type="text" class="form-control" required>
+              </div>
+              <div class="col-md-6">
+                <label for="campo-prioridad" class="form-label">Prioridad</label>
+                <input id="campo-prioridad" type="number" min="1" max="5" class="form-control" value="1">
+              </div>
+              <div class="col-md-6">
+                <label for="campo-estado" class="form-label">Estado</label>
+                <select id="campo-estado" class="form-select">
+                  <option value="false">Pendiente</option>
+                  <option value="true">Terminado</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="campo-fecha" class="form-label">Fecha límite</label>
+                <input id="campo-fecha" type="datetime-local" class="form-control">
+              </div>
+              <div class="col-12">
+                <label for="campo-descripcion" class="form-label">Descripción</label>
+                <textarea id="campo-descripcion" class="form-control" rows="3"></textarea>
+              </div>
+              <div class="col-12 d-flex flex-wrap gap-2">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="button" id="boton-limpiar" class="btn btn-outline-secondary">Limpiar</button>
+                <button type="button" id="boton-eliminar" class="btn btn-outline-danger">Eliminar seleccionado</button>
+              </div>
+            </form>
+            <div class="mt-4">
+              <label for="campo-busqueda" class="form-label">Consultar por código</label>
+              <div class="input-group">
+                <input id="campo-busqueda" type="number" min="1" class="form-control">
+                <button id="boton-buscar" class="btn btn-success" type="button">Buscar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="col-12 col-lg-5">
+        <div class="card sombra">
+          <div class="card-header bg-secondary text-white">Detalle</div>
+          <div class="card-body" id="detalle">
+            <p class="text-muted">Seleccione un pendiente para revisar su información.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="col-12 col-lg-7">
+        <div class="card sombra">
+          <div class="card-header bg-secondary text-white">Listado general</div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead class="table-primary">
+                  <tr>
+                    <th scope="col">Código</th>
+                    <th scope="col">Título</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Prioridad</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="cuerpo-tabla"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="bg-dark text-white text-center py-3">
+    <small>Proyecto educativo con Bootstrap y consumo de API.</small>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="aplicacion.js"></script>
+</body>
+</html>

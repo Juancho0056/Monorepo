@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor sencillo de pendientes</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header class="encabezado">
+    <h1>Gestor sencillo de pendientes</h1>
+    <p>Aplicación construida con HTML, CSS y JavaScript para consumir la API de tareas.</p>
+  </header>
+
+  <main class="principal">
+    <section class="panel panel-formulario">
+      <h2>Registrar o actualizar pendiente</h2>
+      <form id="formulario">
+        <input type="hidden" id="campo-id">
+        <label for="campo-titulo">Título</label>
+        <input id="campo-titulo" type="text" required>
+
+        <label for="campo-descripcion">Descripción</label>
+        <textarea id="campo-descripcion" rows="3"></textarea>
+
+        <label for="campo-prioridad">Prioridad</label>
+        <input id="campo-prioridad" type="number" min="1" max="5" value="1">
+
+        <label for="campo-fecha">Fecha límite</label>
+        <input id="campo-fecha" type="datetime-local">
+
+        <label for="campo-estado">Estado</label>
+        <select id="campo-estado">
+          <option value="false">Pendiente</option>
+          <option value="true">Terminado</option>
+        </select>
+
+        <div class="botones-formulario">
+          <button type="submit">Guardar información</button>
+          <button type="button" id="boton-limpiar">Limpiar formulario</button>
+        </div>
+      </form>
+      <div class="acciones-extra">
+        <label for="campo-busqueda">Consultar pendiente por código</label>
+        <div class="fila-busqueda">
+          <input id="campo-busqueda" type="number" min="1">
+          <button id="boton-buscar">Buscar</button>
+          <button id="boton-eliminar">Eliminar seleccionado</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Detalle del pendiente</h2>
+      <div id="detalle" class="detalle">
+        <p>Seleccione un elemento para ver su información.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Listado de pendientes</h2>
+      <div class="contenedor-tabla">
+        <table>
+          <thead>
+            <tr>
+              <th>Código</th>
+              <th>Título</th>
+              <th>Estado</th>
+              <th>Prioridad</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpo-tabla"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>Proyecto académico con consumo completo de la API.</p>
+  </footer>
+
+  <script src="aplicacion.js"></script>
+</body>
+</html>
